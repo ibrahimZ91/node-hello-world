@@ -22,7 +22,14 @@ pipeline {
                 }
             }
         }
-
+        stage('Stopping and Removing all running containers') {
+            steps {
+                script {
+                    // stopping and removing all running containers.
+                    sh 'docker stop $(docker ps -a -q)'
+                }
+            }
+        }
         stage('Creating a container') {
             steps {
                 script {
