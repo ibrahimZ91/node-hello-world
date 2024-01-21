@@ -22,11 +22,12 @@ pipeline {
                 }
             }
         }
-        stage('Stopping all running containers') {
+        stage('Stopping and removing all running containers') {
             steps {
                 script {
                     // stopping all running containers.
                     sh 'docker stop $(docker ps -a -q)'
+                    sh 'docker rm $(docker ps -a -q)'
                 }
             }
         }
